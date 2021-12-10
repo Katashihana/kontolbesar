@@ -1,0 +1,1 @@
+console.log('FHTEAMID | CODER CUPU GOBLOK TER HAQIQI')
