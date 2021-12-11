@@ -1,1 +1,1 @@
-/**/ typeof cb === 'function' && cb({"code":200,"value":5881});
+/**/ typeof cb === 'function' && cb({"code":200,"value":0});
