@@ -1165,9 +1165,12 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentaiEpisode(url)
-         .then((data) => {
-      res.json(data)
-    })
+         .then(result => {
+			res.json({
+				creator: creator,
+				result
+			})
+		})
          .catch(e => {
              res.json(loghandler.invalidLink)
          })
@@ -1183,9 +1186,12 @@ router.get('/nekopoi/gethentai', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentai(url)
-         .then((data) => {
-      res.json(data)
-    })
+         .then(result => {
+			res.json({
+				creator: creator,
+				result
+			})
+		})
          .catch(e => {
              res.json(loghandler.invalidLink)
          })
@@ -1201,9 +1207,12 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-     .then((data) => {
-      res.json(data)
-    })
+     .then(result => {
+			res.json({
+				creator: creator,
+				result
+			})
+		})
          .catch(e => {
 			console.log('Error :', color(e, 'red'))
 			res.sendFile(error)
