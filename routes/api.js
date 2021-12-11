@@ -3785,14 +3785,10 @@ var result = `Arti dari namamu adalah\n\nNama *${nama}*\n${h}`
 
 router.get('/nekopoi/latest', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
-            nama = req.query.nama,
-	    pasangan = req.query.pasangan;
 
 try {
   if(!apikeyInput) return res.json(loghandler.notparam)
   if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  if (!nama) return res.json(loghandler.notnama)
-  if (!pasangan) return res.json({ message : `Masukan nama pacarmu,, ehh pasangan :v` })
 
  request.get({
         headers: {'content-type' : 'application/x-www-form-urlencoded'},
