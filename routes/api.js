@@ -1164,8 +1164,8 @@ router.get('/nekopoi/latest', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.latest()
-         .then((result) => {
-      res.json(result)
+         .then((obj) => {
+      res.json(obj)
     })
          .catch(e => {
 			console.log('Error :', color(e, 'red'))
@@ -1183,8 +1183,8 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentaiEpisode(url)
-         .then((result) => {
-      res.json(result)
+         .then((obj) => {
+      res.json(obj)
     })
          .catch(e => {
              res.json(loghandler.invalidLink)
@@ -1201,8 +1201,8 @@ router.get('/nekopoi/gethentai', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentai(url)
-         .then((result) => {
-      res.json(result)
+         .then((obj) => {
+      res.json(obj)
     })
          .catch(e => {
              res.json(loghandler.invalidLink)
@@ -1219,8 +1219,8 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-     .then((result) => {
-      res.json(result)
+     .then((obj) => {
+      res.json(obj)
     })
          .catch(e => {
 			console.log('Error :', color(e, 'red'))
