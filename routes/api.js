@@ -1165,7 +1165,7 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-     .then(result => {
+     .then(res => {
 			res.json({
 				creator: creator,
 				result
