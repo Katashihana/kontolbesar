@@ -15,6 +15,7 @@ var key = 'Katashi' // Apikey Lu Ngab
 
 // Required Modules :
 var ffmpeg = require('fluent-ffmpeg');
+var brainly = require('brainly-scraper-v2');
 var imageToBase64 = require('image-to-base64');
 var upload = require(__path + '/lib/upload.js');
 var axios = require('axios');
@@ -31,7 +32,6 @@ var cheerio = require('cheerio');
 var request = require('request');
 var TikTokScraper = require('tiktok-scraper');
 var nekopoi = require('nekobocc');
-var brainly = require('brainly-scraper');
 var yts = require('yt-search');
 var fs = require('fs');
 var util = require('util');
@@ -1165,27 +1165,6 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-     .then(data => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-         .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-router.get('/brainly', async (req, res, next) => {
-     apikeyInput = req.query.apikey,
-     query = req.query.query
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if(!query) return res.json(loghandler.notquery)
-
-     brainly(query)
      .then(data => {
 			res.json({
 				creator: creator,
