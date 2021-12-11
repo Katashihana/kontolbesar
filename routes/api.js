@@ -1155,51 +1155,9 @@ router.get("/media/fbdown2", async(req, res, next) => {
 		})
 })
 
-router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-    url = req.query.url
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if (!url) return res.json(loghandler.noturl)
-
-     nekopoi.getHentaiEpisode(url)
-         .then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-         .catch(e => {
-             res.json(loghandler.invalidLink)
-         })
-})
-
-router.get('/nekopoi/gethentai', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-    url = req.query.url
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if (!url) return res.json(loghandler.noturl)
-
-     nekopoi.getHentai(url)
-         .then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-         .catch(e => {
-             res.json(loghandler.invalidLink)
-         })
-})
-
 router.get('/nekopoi/search', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-     query = req.query.query,
+     apikeyInput = req.query.apikey,
+     query = req.query.query
 
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
