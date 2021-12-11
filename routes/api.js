@@ -1166,8 +1166,8 @@ router.get('/nekopoi/search', async (req, res, next) => {
 
      nekopoi.search(query)
      .then(response => response.json())
-        .then(res => {
-        var result = res;
+        .then(obj => {
+        var result = obj;
              res.json({
              	author: 'Katashi',
                 result
