@@ -1165,12 +1165,12 @@ router.get('/nekopoi/latest', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.latest()
-         .then(res => {
-             console.log(res)
+         .then(result => {
+             console.log(result)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: res
+                 results: result
              })
          })
          .catch(e => {
@@ -1189,12 +1189,12 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentaiEpisode(url)
-         .then(res => {
-             console.log(res)
+         .then(result => {
+             console.log(result)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: res
+                 results: result
              })
          })
          .catch(e => {
@@ -1212,12 +1212,12 @@ router.get('/nekopoi/gethentai', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentai(url)
-         .then(res => {
-             console.log(res)
+         .then(result => {
+             console.log(result)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: res
+                 results: result
              })
          })
          .catch(e => {
@@ -1235,38 +1235,12 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-         .then(res => {
-             console.log(res)
+         .then(result => {
+             console.log(result)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: res
-             })
-         })
-         .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get('/brainly/search', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-    var query = req.query.query
-    var count = req.query.count,
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if(!query) return res.json(loghandler.notquery)
-     if(!count) return res.json(loghandler.notcount)
-
-     brainly(query)
-         .then(res => {
-             console.log(res)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 results: res
+                 results: result
              })
          })
          .catch(e => {
