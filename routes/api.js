@@ -1165,14 +1165,9 @@ router.get('/nekopoi/latest', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.latest()
-         .then(format => {
-             console.log(format)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 results: format
-             })
-         })
+         .then((result) => {
+      res.json(result)
+    })
          .catch(e => {
 			console.log('Error :', color(e, 'red'))
 			res.sendFile(error)
@@ -1189,14 +1184,9 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentaiEpisode(url)
-         .then(format => {
-             console.log(format)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 results: format
-             })
-         })
+         .then((result) => {
+      res.json(result)
+    })
          .catch(e => {
              res.json(loghandler.invalidLink)
          })
@@ -1212,14 +1202,9 @@ router.get('/nekopoi/gethentai', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentai(url)
-         .then(format => {
-             console.log(format)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 results: format
-             })
-         })
+         .then((result) => {
+      res.json(result)
+    })
          .catch(e => {
              res.json(loghandler.invalidLink)
          })
@@ -1235,14 +1220,9 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-         .then(format => {
-             console.log(format)
-             res.json({
-                 status: true,
-                 creator: `${creator}`,
-                 results: format
-             })
-         })
+     .then((result) => {
+      res.json(result)
+    })
          .catch(e => {
 			console.log('Error :', color(e, 'red'))
 			res.sendFile(error)
