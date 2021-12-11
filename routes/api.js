@@ -1165,16 +1165,17 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-     .then(data => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
+     .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Katashi',
+                result
+             })
+         })
          .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
+         	res.sendFile(error)
+})
 })
 
 router.get("/media/igstalk", async(req, res, next) => {
@@ -2732,26 +2733,6 @@ router.get('/kuis/caklontong', async (req, res, next) => {
 })
 })
 
-router.get('/kuis/tebakgambar', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-
-       fetch(encodeURI(`https://api.zeks.xyz/api/tebakgambar?apikey=alpin1234567`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-             	author: 'Katashi',
-                result
-             })
-         })
-         .catch(e => {
-         	res.sendFile(error)
-})
-})
-
 router.get('/news/cnn', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             type = req.query.type
@@ -3777,47 +3758,6 @@ var result = `Arti dari namamu adalah\n\nNama *${nama}*\n${h}`
              })
    })
 
-} catch (e) {
-     console.log(e)
-	res.sendFile(error)
-   }
-})
-
-router.get('/nekopoi/latest', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-
-try {
-  if(!apikeyInput) return res.json(loghandler.notparam)
-  if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-
- request.get({
-        headers: {'content-type' : 'application/x-www-form-urlencoded'},
-        url: 'https://nekopoi.care/',
-
-    }, function(error, response, body){
-        let $ = cheerio.load(body);
-      var img = []
-        var title = []
-        var link = []
-        $('div.eropost').each((i, e) => {
-            $(e).find('h2').each((i, e) => {
-                title.push($(e).find('a').text().trim())
-                link.push($(e).find('a').attr('href'))
-            })
-            img.push($(e).find('img').attr('src'))
-        })
-        var format = []
-        for (let i = 0; i < title.length; i++) {
-            const obj = { img: img[i], title: title[i], link: link[i] }
-            format.push(obj)
-        }
-        res.json({
-	        status : true,
-                creator : `${creator}`,
-                result : format
-             })
-   })
-   
 } catch (e) {
      console.log(e)
 	res.sendFile(error)
