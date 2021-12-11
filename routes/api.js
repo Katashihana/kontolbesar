@@ -1165,12 +1165,12 @@ router.get('/nekopoi/latest', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.latest()
-         .then(result => {
-             console.log(result)
+         .then(format => {
+             console.log(format)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: result
+                 results: format
              })
          })
          .catch(e => {
@@ -1189,12 +1189,12 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentaiEpisode(url)
-         .then(result => {
-             console.log(result)
+         .then(format => {
+             console.log(format)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: result
+                 results: format
              })
          })
          .catch(e => {
@@ -1212,12 +1212,12 @@ router.get('/nekopoi/gethentai', async (req, res, next) => {
      if (!url) return res.json(loghandler.noturl)
 
      nekopoi.getHentai(url)
-         .then(result => {
-             console.log(result)
+         .then(format => {
+             console.log(format)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: result
+                 results: format
              })
          })
          .catch(e => {
@@ -1235,12 +1235,12 @@ router.get('/nekopoi/search', async (req, res, next) => {
      if(!query) return res.json(loghandler.notquery)
 
      nekopoi.search(query)
-         .then(result => {
-             console.log(result)
+         .then(format => {
+             console.log(format)
              res.json({
                  status: true,
                  creator: `${creator}`,
-                 results: result
+                 results: format
              })
          })
          .catch(e => {
