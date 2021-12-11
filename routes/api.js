@@ -1151,7 +1151,7 @@ router.get("/media/fbdown2", async(req, res, next) => {
     })
   .catch(e => {
 			console.log('Error :', color(e, 'red'))
-			res.json(loghandler.invalidLink)
+			res.sendFile(error)
 		})
 })
 
