@@ -1176,49 +1176,6 @@ router.get('/nekopoi/gethentaiepisode', async (req, res, next) => {
          })
 })
 
-router.get('/nekopoi/gethentai', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-    url = req.query.url
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if (!url) return res.json(loghandler.noturl)
-
-     nekopoi.getHentai(url)
-         .then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-         .catch(e => {
-             res.json(loghandler.invalidLink)
-         })
-})
-
-router.get('/nekopoi/search', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-    var query = req.query.query,
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if(!query) return res.json(loghandler.notquery)
-
-     nekopoi.search(query)
-     .then(result => {
-			res.json({
-				creator: creator,
-				result
-			})
-		})
-         .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
 router.get("/media/igstalk", async(req, res, next) => {
   apikeyInput = req.query.apikey;
    username = req.query.username
