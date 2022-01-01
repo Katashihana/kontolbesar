@@ -1302,19 +1302,7 @@ router.get("/search/nekopoi/getlatest", async(req, res, next) => {
 		})
 })
 
-router.get("/search/randomcerpen", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  RandomCerpen()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
+
 
 router.get("/search/servermc", async(req, res, next) => {
   apikeyInput = req.query.apikey;
@@ -1571,23 +1559,6 @@ router.get('/game/caklontong2', async (req, res, next) => {
          .catch(e => {
          	res.sendFile(error)
 })
-})
-
-router.get("/download/fbdownloader", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-   url = req.query.url
-  if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  fbDownloader(url)
-    .then((data) => {
-      res.json(data)
-    })
-  } catch (e) {
-             console.log('Error :', color(e,'red'))
-             res.json(loghandler.invalidLink)
-         }
-     })
 })
 
 router.get("/download/facebookdwn", async(req, res, next) => {
