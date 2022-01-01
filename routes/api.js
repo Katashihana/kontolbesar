@@ -1274,22 +1274,6 @@ router.get("/search/layarkaca", async(req, res, next) => {
 		})
 })
 
-router.get("/search/gsmarena", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-   query = req.query.query;
-  if(!query) return res.json(loghandler.notquery)
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  GSMArena(query)
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
 router.get("/search/hoax", async(req, res, next) => {
   apikeyInput = req.query.apikey;
   if (!apikeyInput) return res.json(loghandler.notparam)
@@ -1337,62 +1321,6 @@ router.get("/search/servermc", async(req, res, next) => {
   if (!apikeyInput) return res.json(loghandler.notparam)
 		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
   servermc()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get("/game/tekateki", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  tekateki()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get("/game/asahotak", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  asahotak()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get("/game/susunkata", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  susunkata()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
-router.get("/game/family1002", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  family100()
     .then((data) => {
       res.json(data)
     })
