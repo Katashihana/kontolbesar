@@ -1288,20 +1288,6 @@ router.get("/search/hoax", async(req, res, next) => {
 		})
 })
 
-router.get("/search/nekopoi/getlatest", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  getLatest()
-    .then((data) => {
-      res.json(data)
-    })
-  .catch(e => {
-			console.log('Error :', color(e, 'red'))
-			res.sendFile(error)
-		})
-})
-
 
 
 router.get("/search/servermc", async(req, res, next) => {
@@ -1578,22 +1564,6 @@ router.get("/download/facebookdwn", async(req, res, next) => {
      })
 })
 
-router.get("/download/nekopoi/getvideo", async(req, res, next) => {
-  apikeyInput = req.query.apikey;
-   url = req.query.url
-  if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
-  if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-  getVideo(url)
-    .then((data) => {
-      res.json(data)
-    })
-  } catch (e) {
-             console.log('Error :', color(e,'red'))
-             res.json(loghandler.invalidLink)
-         }
-     })
-})
 
 
 router.get('/random/pornvid', async (req, res, next) => {
