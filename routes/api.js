@@ -71,6 +71,22 @@ var {
   twitter,
 } = require("./../lib/downloadig2");
 var {
+  fbDownloader,
+  zodiakHar,
+  zodiakMing,
+  RamalJadian,
+  RandomCerpen,
+  jagokata,
+  GSMArena,
+} = require("./../lib/scraper");
+var {
+  getVideo,
+  getLatest,
+} = require("./../lib/nekopoi");
+var {
+  facebook,
+} = require("./../lib/nekopoi");
+var {
   asahotakasahotak, family100,  siapakah, siapakah2, susunkata, tekateki } = require("./../lib/scrapegame");
 var cookie = "HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4zbLP/AlvlPJ2xBJBsykmS_;SAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;__Secure-3PAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;VISITOR_INFO1_LIVE=RgZLnZtCoPU;LOGIN_INFO=AFmmF2swRQIhAOXIXsKVou2azuz-kTsCKpbM9szRExAMUD-OwHYiuB6eAiAyPm4Ag3O9rbma7umBK-AG1zoGqyJinh4ia03csp5Nkw:QUQ3MjNmeXJ0UHFRS3dzaTNGRmlWR2FfMDRxa2NRYTFiN3lfTEdOVTc4QUlwbUI4S2dlVngxSG10N3ZqcHZwTHBKano5SkN2dDlPSkhRMUtReE42TkhYeUVWS3kyUE1jY2I1QzA1MDZBaktwd1llWU9lOWE4NWhoZV92aDkxeE9vMTNlcG1uMU9rYjhOaDZWdno2ZzN3TXl5TVNhSjNBRnJaMExrQXpoa2xzRVUteFNWZDI5S0Fn;PREF=app=desktop&f4=4000000&al=id;SID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1njBpLTOpxSfN-EaYCRSiDg.;YSC=HCowA1fmvzo;__Secure-3PSID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1dajgWzlBh9TgKapGOwuXfA.;SIDCC=AJi4QfFK0ri9fSfMjMQ4tOJNp6vOb9emETXB_nf2S05mvr2jBlmeEvlSsQSzPMuJl_V0wcbL1r8;__Secure-3PSIDCC=AJi4QfGeWHx-c4uTpU1rXCciO1p0s2fJWU07KrkZhWyD1Tqi8LyR-kHuBwHY9mViVYu1fRh2PA";
 
@@ -1167,7 +1183,7 @@ router.get('/nekopoi/search', async (req, res, next) => {
      nekopoi.search(query)
      .then(response => response.json())
         .then(obj => {
-        var result = obj;
+        var result = res;
              res.json({
              	author: 'Katashi',
                 result
@@ -1258,11 +1274,55 @@ router.get("/search/layarkaca", async(req, res, next) => {
 		})
 })
 
+router.get("/search/gsmarena", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+   query = req.query.query;
+  if(!query) return res.json(loghandler.notquery)
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  GSMArena(query)
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+			console.log('Error :', color(e, 'red'))
+			res.sendFile(error)
+		})
+})
+
 router.get("/search/hoax", async(req, res, next) => {
   apikeyInput = req.query.apikey;
   if (!apikeyInput) return res.json(loghandler.notparam)
 		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
   turnbackhoax()
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+			console.log('Error :', color(e, 'red'))
+			res.sendFile(error)
+		})
+})
+
+router.get("/search/nekopoi/getlatest", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  getLatest()
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+			console.log('Error :', color(e, 'red'))
+			res.sendFile(error)
+		})
+})
+
+router.get("/search/randomcerpen", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  RandomCerpen()
     .then((data) => {
       res.json(data)
     })
@@ -1545,6 +1605,27 @@ router.get('/genshin/artifacts/jp', async (req, res, next) => {
 })
 })
 
+router.get('/meme/polosan', async (req, res, next) => {
+         apikeyInput = req.query.apikey
+         query = req.query.query;
+  if(!query) return res.json(loghandler.notquery)
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+
+       fetch(encodeURI(`https://raw.githubusercontent.com/rizkiramadhan4617/Meme/main/mentahan/polosan.json`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+             	author: 'Katashi',
+                result
+             })
+         })
+         .catch(e => {
+         	res.sendFile(error)
+})
+})
+
 router.get('/game/caklontong2', async (req, res, next) => {
          apikeyInput = req.query.apikey
 	if(!apikeyInput) return res.json(loghandler.notparam)
@@ -1563,6 +1644,52 @@ router.get('/game/caklontong2', async (req, res, next) => {
          	res.sendFile(error)
 })
 })
+
+router.get("/download/fbdownloader", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+   url = req.query.url
+  if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  fbDownloader(url)
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+         	res.sendFile(error)
+})
+})
+
+router.get("/download/facebookdwn", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+   url = req.query.url
+  if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  facebook(url)
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+         	res.sendFile(error)
+})
+})
+
+router.get("/download/nekopoi/getvideo", async(req, res, next) => {
+  apikeyInput = req.query.apikey;
+   url = req.query.url
+  if (!url) return res.json({ status : false, creator : `${creator}`, message : "Masukan parameter url"})
+  if (!apikeyInput) return res.json(loghandler.notparam)
+		if (apikeyInput !== `${key}`) return res.sendFile(invalidKey)
+  getVideo(url)
+    .then((data) => {
+      res.json(data)
+    })
+  .catch(e => {
+         	res.sendFile(error)
+})
+})
+
 
 router.get('/random/pornvid', async (req, res, next) => {
 	        var apikeyInput = req.query.apikey
