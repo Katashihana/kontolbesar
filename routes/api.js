@@ -71,15 +71,6 @@ var {
   twitter,
 } = require("./../lib/downloadig2");
 var {
-  fbDownloader,
-  zodiakHar,
-  zodiakMing,
-  RamalJadian,
-  RandomCerpen,
-  jagokata,
-  GSMArena,
-} = require("./../lib/scraper");
-var {
   getVideo,
   getLatest,
 } = require("./../lib/nekopoi");
