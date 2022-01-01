@@ -1583,9 +1583,11 @@ router.get("/download/fbdownloader", async(req, res, next) => {
     .then((data) => {
       res.json(data)
     })
-  .catch(e => {
-         	res.sendFile(error)
-})
+  } catch (e) {
+             console.log('Error :', color(e,'red'))
+             res.json(loghandler.invalidLink)
+         }
+     })
 })
 
 router.get("/download/facebookdwn", async(req, res, next) => {
@@ -1598,9 +1600,11 @@ router.get("/download/facebookdwn", async(req, res, next) => {
     .then((data) => {
       res.json(data)
     })
-  .catch(e => {
-         	res.sendFile(error)
-})
+  } catch (e) {
+             console.log('Error :', color(e,'red'))
+             res.json(loghandler.invalidLink)
+         }
+     })
 })
 
 router.get("/download/nekopoi/getvideo", async(req, res, next) => {
@@ -1613,9 +1617,11 @@ router.get("/download/nekopoi/getvideo", async(req, res, next) => {
     .then((data) => {
       res.json(data)
     })
-  .catch(e => {
-         	res.sendFile(error)
-})
+  } catch (e) {
+             console.log('Error :', color(e,'red'))
+             res.json(loghandler.invalidLink)
+         }
+     })
 })
 
 
