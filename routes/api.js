@@ -1137,9 +1137,9 @@ router.get("/search/jalantikus", async(req, res, next) => {
 			console.log('Error :', color(e, 'red'))
 			res.sendFile(error)
 		})
-})l
+})
 
-router.get('/nekopoi/search', async (req, res, next) => {
+router.get('/media/brainly', async (req, res, next) => {
      apikeyInput = req.query.apikey,
      query = req.query.query
 
@@ -1148,7 +1148,7 @@ router.get('/nekopoi/search', async (req, res, next) => {
 	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
      if(!query) return res.json(loghandler.notquery)
 
-     nekopoi.search(query)
+     brainly(query)
      .then((data) => {
       res.json(data)
     })
