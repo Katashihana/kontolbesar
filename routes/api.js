@@ -31,7 +31,6 @@ var fetch = require('node-fetch');
 var cheerio = require('cheerio');
 var request = require('request');
 var TikTokScraper = require('tiktok-scraper');
-var nekopoi = require('nekobocc');
 var yts = require('yt-search');
 var fs = require('fs');
 var util = require('util');
@@ -1137,24 +1136,6 @@ router.get("/search/jalantikus", async(req, res, next) => {
 			console.log('Error :', color(e, 'red'))
 			res.sendFile(error)
 		})
-})
-
-router.get('/media/brainly', async (req, res, next) => {
-     apikeyInput = req.query.apikey,
-     query = req.query.query
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput !== `${key}`) return res.sendFile(invalidKey)
-     if(!query) return res.json(loghandler.notquery)
-
-     brainly(query)
-     .then((data) => {
-      res.json(data)
-    })
-         .catch(e => {
-         	res.sendFile(error)
-})
 })
 
 router.get("/media/igstalk", async(req, res, next) => {
